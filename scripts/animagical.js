@@ -391,7 +391,7 @@ $(document).ready(function(){
 
 	function adjustContent(){
 		content_height = ($(window).height() - $("nav").height());
-		content_width = ($(window).width());
+		content_width = ($(window).width() - 20);
 		$(".content").height(content_height);
 		$("#aolol").height(content_height);
 		$("#aolol").width(content_width);
