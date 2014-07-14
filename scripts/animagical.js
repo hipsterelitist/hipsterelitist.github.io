@@ -220,7 +220,7 @@ $(document).ready(function(){
 			}
 		}
 
-		typeo = setInterval(function(){
+		window.intraval = setInterval(function(){
 			type = txt.substring(0, poz)
 			// since we're feeding it groomed text from made up txt, lets
 			// stick to pre whitespace
@@ -228,7 +228,7 @@ $(document).ready(function(){
 			$("#aolol").html(type);
 			poz += 1
 			if(poz > txt.length){
-				clearInterval(typeo)
+				clearInterval(window.intraval)
 				anime()
 			}
 		}, wait)
@@ -272,28 +272,30 @@ $(document).ready(function(){
 	function experience(wait){
 		if (typeof wait === "undefined" || wait === null) { 
 				wait = 50; 
-			}	
-			window.wash()
-			$("#aolol").addClass("navigable");
-			str = "Companies:\nPlayAPI\nQuirky\nFashism\nOMGPOP"
+		}	
+		window.wash()
+		$("#aolol").removeClass("txt").addClass("navigable");
+		str = "Companies:\nPlayAPI\nQuirky\nFashism\nOMGPOP"
 
-			// using my original genText method instead since it generates
-			// range areas that can be targeted for events
-			// Uncomment this method once authText is brought to parity  
-			/*authText(str, function(){
-				$(".range").on("click", function(e){
-				if($(".range").index($(this)) > 0){
-					lightboxin(loadExperience($(this)));
-					//console.warn($(".range").index($(this)));
-				}
-			});
-			})*/
+		// using my original genText method instead since it generates
+		// range areas that can be targeted for events
+		// Uncomment this method once authText is brought to parity  
+		/*authText(str, function(){
+			$(".range").on("click", function(e){
+			if($(".range").index($(this)) > 0){
+				lightboxin(loadExperience($(this)));
+				//console.warn($(".range").index($(this)));
+			}
+		});
+		})*/
+
 		genText(str, function(){
 			spit($("span"), wait);
 			window.colorize();
 			$(".range").on("click", function(e){
 				if($(".range").index($(this)) > 0){
-					lightboxin(loadExperience($(this)));
+
+					loadExperience($(this));
 					//console.warn($(".range").index($(this)));
 				}
 			});
@@ -305,21 +307,29 @@ $(document).ready(function(){
 	}
 
 	function loadExperience(ranger){
+		$("#aolol").removeClass("txt").addClass("navigable");
 		dex = ($(".range").index(ranger) - 1)
 		lightboxin($($("#experience div")[dex]).html());
 	}
-
 	function loadBio(){
-		$("#aolol").addClass("txt");
-		$("nav").one("click", function(){
-			$("#aolol").removeClass("navigable").removeClass("txt");
-		});
+		window.wash()
+		$("#aolol").removeClass("navigable").addClass("txt");
+		return $("#bio").html()
+	}
+
+	function loadWhy(){
+		$("#aolol").removeClass("navigable").removeClass("txt");
+		if(typeof(window.intraval) == "number"){
+			clearInterval(window.intraval)
+		}
+		return $("#why").html()
 	}
 
 	$(".experience").on("click", function(){
-		window.wash(function(){
-			experience();	
-		});
+		if(typeof(window.intraval) == "number"){
+			clearInterval(window.intraval)
+		}
+		experience();	
 	});
 
 	$("nav").on("click", function(){
@@ -327,12 +337,11 @@ $(document).ready(function(){
 	});
 
 	$(".bio").on("click", function(){
-			$("#aolol").removeClass("navigable").addClass("txt");
-			window.wash(typin($("#bio").html(), 5, 1));
+		$("#aolol").removeClass("navigable").addClass("txt");
+		window.wash(typin(loadBio(), 5, 1));
 	});
 
 	$(".why").on("click", function(){
-		$("#aolol").removeClass("navigable").removeClass("txt");
 		// Uncomment below to use type out function, left here
 		// as example of how grooming can be done for it.
 		/* 
@@ -349,7 +358,7 @@ $(document).ready(function(){
 				},10);
 			});
 		})*/
-		groomed = $.trim($("#why").html()).replace(/(<br>)|(<br \/>)|(<p>)|(<\/p>)/g, "\n")
+		groomed = $.trim(loadWhy()).replace(/(<br>)|(<br \/>)|(<p>)|(<\/p>)/g, "\n")
 		genText(groomed, function(){
 			window.sow(5, 450, function(){
 				window.colorize([randColor(), randColor()]);

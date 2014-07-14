@@ -59,7 +59,7 @@ span.typeo {
 body.dim .typeo h3 {
   border-bottom: 5px solid lime; }
 
-body.dim span.typeo {
+body.dim span.typeo, body.dim #aolol.txt {
   font-family: Menlo, Monaco, "Bitstream", "Courier New";
   color: lime;
   text-shadow: 0 0 2px lime; }
