@@ -222,7 +222,9 @@ $(document).ready(function(){
 
 		typeo = setInterval(function(){
 			type = txt.substring(0, poz)
-			type = "<span class='typeo'>" + type + "</span>"
+			// since we're feeding it groomed text from made up txt, lets
+			// stick to pre whitespace
+			//type = "<span class='typeo'>" + type + "</span>"
 			$("#aolol").html(type);
 			poz += 1
 			if(poz > txt.length){
@@ -303,31 +305,15 @@ $(document).ready(function(){
 	}
 
 	function loadExperience(ranger){
-		playapi = "Chief Engineer (2011-2014)\n\nWe were kind of big nerds, so we figured Chief Engineer sounded more like"
-		playapi += " the Miles O'Brien \"build it all/fix it all\" nature of the job than CTO.\n\n"
-		playapi += "<a href='http://playapi.com/' target='new'>Playapi</a> "
-		playapi += "was built on Rails & Mongodb with a fair  bit of REDIS. Had tons of data and built some really great analytical tools... Oh and super fun games for *GREAT BRANDS*?"
-		//playapi += "\n\n<a href='http://playapi.com'>PlayAPI</a>"
+		dex = ($(".range").index(ranger) - 1)
+		lightboxin($($("#experience div")[dex]).html());
+	}
 
-		quirky = "Senior Developer (2009-2012)\n\nFirst engineering hire and overall 5th employee or so.\n\nOversaw "
-		quirky += "a complete amazing overhaul of the site. Implemented countless features and helped the "
-		quirky += "site grow from less than a thousand users to the thriving community it is "
-		quirky += "today.\n\n<a href='http://quirky.com/' target='_blank'>Quirky</a>"
-
-		fashism = "Co-Founder (2008-2010)\n\nSCORE! MY FIRST REAL COMPANY! I'M A FOUNDERSZ!\n\nBuilt a platform for "
-		fashism += "submitting and rating outfits. Ideally to help make decisions before purchasing or "
-		fashism += "leaving the house... but really more about teenage validation.\n\n"
-		fashism += "Sadly, Fashism shuttered earlier this year, but Mashable has a roundup: "
-		fashism += "<a href='http://mashable.com/category/fashism/' target='_blank'>Fashism</a>"
-
-		omgpop = "Developer ? (2006-2008)\n\nCut my teeth here under Charles Forman and Dan Albritton...\n\nPivoted "
-		omgpop += "from flavor of the month dating site to social-gaming-DrawSomething-spawning-Zynga chow."
-		omgpop += "\n\n(Seriously though, how good was that dating app? I should rebuild it as an app because"
-		omgpop += " it would totally kill Tinder.\n\n"
-		omgpop += "Also, if you see this Dan, I still have the LC4 chaise. It is my favorite thing.)"
-
-		experiences = [playapi, quirky, fashism, omgpop]
-		lightboxin(experiences[$(".range").index(ranger) - 1]);
+	function loadBio(){
+		$("#aolol").addClass("txt");
+		$("nav").one("click", function(){
+			$("#aolol").removeClass("navigable").removeClass("txt");
+		});
 	}
 
 	$(".experience").on("click", function(){
@@ -336,30 +322,35 @@ $(document).ready(function(){
 		});
 	});
 
-	$(".credits").on("click", function(){
-		$("#aolol").removeClass("navigable").removeClass("txt");
-		window.wash(function(){
-			genText("figlet.js\n  - patorjk", function(){
-				window.colorize(["#000000", "#00ff00"]);
-				window.spit()
-			}, "Broadway");
-		});
-	})
-
-	$(".bio").on("click", function(){
-			$("#aolol").addClass("txt");
-			str = "Chris France\n\nEDUCATION\n---------\nNew School\nMedia Studies, BA 2009\n"
-			str += "Parsons\nDesign and Technology (2006-2009)\n\n"
-			str+= "SKILLS\n------\n"
-			str += "Tech\nRuby\nNodeJS\nMongoDB\nJavascript\nSwift (ObjC is lame now!)\nDocker\n"
-			str += "Heroku\nAWS\nMySQL\nBlah,blah,blah"
-
-			window.wash(typin(str, 5, 1));
+	$("nav").on("click", function(){
+		$(".lightbox").hide();
 	});
 
-	$(".jokes").on("click", function(){
+	$(".bio").on("click", function(){
+			$("#aolol").removeClass("navigable").addClass("txt");
+			window.wash(typin($("#bio").html(), 5, 1));
+	});
+
+	$(".why").on("click", function(){
 		$("#aolol").removeClass("navigable").removeClass("txt");
-		genText("Jokes!\n\nSERIOUSLY", function(){
+		// Uncomment below to use type out function, left here
+		// as example of how grooming can be done for it.
+		/* 
+		groomed = $.trim($("#why").html()).replace(/(<br>)|(<br \/>)|(<p>)|(<\/p>)/g, "\n")
+		authText(groomed, function(){
+			window.sow(5, 450, function(){
+				window.colorize([randColor(), randColor()]);
+				$("sapn").css({
+					"opacity":"0",
+					"margin-left":"0px"
+				});
+				$("span").animate({
+					opacity:1
+				},10);
+			});
+		})*/
+		groomed = $.trim($("#why").html()).replace(/(<br>)|(<br \/>)|(<p>)|(<\/p>)/g, "\n")
+		genText(groomed, function(){
 			window.sow(5, 450, function(){
 				window.colorize([randColor(), randColor()]);
 				$("span").css({
@@ -370,7 +361,6 @@ $(document).ready(function(){
 					opacity:1
 				}, 1)
 			});
-			//window.colorize([randColor(), "#000000"])
 			window.colorize([randColor(), randColor()]);
 		})
 	})

@@ -72,6 +72,7 @@ span{
 }
 span.typeo{
 	margin-left:0px;
+	white-space:normal;
 }
 .typeo h3{
 	display:inline-block;
@@ -206,14 +207,15 @@ pre{
 	user-select: none;
 }
 
+.content > div{
+	display:none;
+}
+
 #aolol{
+	display:block;
 	margin-left:20px;
 	white-space:pre;
 	overflow:hidden;
-}
-
-#vtxt_Content, #vtxt_ContentText{
-	height:100%;
 }
 
 @-webkit-keyframes blinkz {
