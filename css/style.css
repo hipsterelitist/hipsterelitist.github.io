@@ -152,7 +152,8 @@ pre {
 
 #aolol {
   margin-left: 20px;
-  white-space: pre; }
+  white-space: pre;
+  overflow: hidden; }
 
 #vtxt_Content, #vtxt_ContentText {
   height: 100%; }
@@ -237,9 +238,11 @@ pre {
     margin-left: 0px;
     left: 0px;
     bottom: 0px;
-    -webkit-animation-name: blinkz;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-duration: 1s; }
+    -webkit-animation: blinkz 1.5s linear 0s infinite;
+    -moz-animation: blinkz 1.5s linear 0s infinite;
+    -ms-animation: blinkz 1.5s linear 0s infinite;
+    -o-animation: blinkz 1.5s linear 0s infinite;
+    animation: blinkz 1.5s linear 0s infinite; }
 
   .lightbox .escape:hover {
     -webkit-animation: none;
