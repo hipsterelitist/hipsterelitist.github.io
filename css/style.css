@@ -46,6 +46,15 @@ span {
 span.typeo {
   margin-left: 0px; }
 
+.typeo h3 {
+  display: inline-block;
+  border-bottom: 5px dotted black;
+  margin: 0px 0px 10px 0px;
+  text-shadow: none; }
+
+body.dim .typeo h3 {
+  border-bottom: 5px solid lime; }
+
 body.dim span.typeo {
   font-family: Menlo, Monaco, "Bitstream", "Courier New";
   color: lime;
@@ -58,7 +67,8 @@ nav {
   margin-bottom: 18px;
   font-family: Menlo, Monaco, "Bitstream", "Courier New";
   width: 100%;
-  color: black; }
+  color: black;
+  text-transform: uppercase; }
 
 body.dim nav {
   color: lime;

@@ -348,9 +348,10 @@ $(document).ready(function(){
 
 	$(".bio").on("click", function(){
 			$("#aolol").addClass("txt");
-			str = "Chris France\n\nEducation\nNew School\nMedia Studies, BA 2009\n\n"
+			str = "Chris France\n\nEDUCATION\n---------\nNew School\nMedia Studies, BA 2009\n"
 			str += "Parsons\nDesign and Technology (2006-2009)\n\n"
-			str += "Skills\nTech\nRuby\nNodeJS\nMongoDB\nJavascript\nSwift (ObjC is lame now!)\nDocker\n"
+			str+= "SKILLS\n------\n"
+			str += "Tech\nRuby\nNodeJS\nMongoDB\nJavascript\nSwift (ObjC is lame now!)\nDocker\n"
 			str += "Heroku\nAWS\nMySQL\nBlah,blah,blah"
 
 			window.wash(typin(str, 5, 1));
@@ -400,7 +401,7 @@ $(document).ready(function(){
 
 	function adjustContent(){
 		content_height = ($(window).height() - $("nav").height());
-		content_width = ($window.width() - $("nav").width());
+		content_width = ($(window).width());
 		$(".content").height(content_height);
 		$("#aolol").height(content_height);
 		$("#aolol").width(content_width);

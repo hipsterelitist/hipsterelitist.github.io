@@ -73,6 +73,15 @@ span{
 span.typeo{
 	margin-left:0px;
 }
+.typeo h3{
+	display:inline-block;
+	border-bottom:5px dotted black;
+	margin:0px 0px 10px 0px;
+	text-shadow:none;
+}
+body.dim .typeo h3{
+	border-bottom:5px solid $awfulgreen;
+}
 
 body.dim span.typeo{
 	font-family:$fonts;
@@ -88,6 +97,7 @@ nav{
 	font-family:$fonts;
 	width:100%;
 	color:$greatblue;
+	text-transform:uppercase;
 }
 
 body.dim nav{
