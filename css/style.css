@@ -186,7 +186,7 @@ pre {
   100% {
     opacity: 1; } }
 
-@media only screen and (max-width: 481px) {
+@media only screen and (max-device-width: 480px) {
   nav {
     color: black;
     border-bottom: 8px solid black;
@@ -216,7 +216,10 @@ pre {
     border-bottom: 8px solid lime; }
 
   #aolol {
-    font-size: 8px; }
+    font-size: 12px; }
+
+  #aolol.txt {
+    font-size: 30px; }
 
   .lightbox {
     width: 100%;

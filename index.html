@@ -375,7 +375,7 @@
 			});
 
 			$(".credits").on("click", function(){
-				$("#aolol").removeClass("navigable");
+				$("#aolol").removeClass("navigable").removeClass("txt");
 				window.wash(function(){
 					genText("figlet.js\n  - patorjk", function(){
 						window.colorize(["#000000", "#00ff00"]);
@@ -385,6 +385,7 @@
 			})
 
 			$(".bio").on("click", function(){
+					$("#aolol").addClass("txt");
 					str = "Chris France\n\nEducation\nNew School\nMedia Studies, BA 2009\n\n"
 					str += "Parsons\nDesign and Technology (2006-2009)\n\n"
 					str += "Skills\nTech\nRuby\nNodeJS\nMongoDB\nJavascript\nSwift (ObjC is lame now!)\nDocker\n"
@@ -394,7 +395,7 @@
 			});
 
 			$(".jokes").on("click", function(){
-				$("#aolol").removeClass("navigable");
+				$("#aolol").removeClass("navigable").removeClass("txt");
 				genText("Jokes!\n\nSERIOUSLY", function(){
 					window.sow(5, 450, function(){
 						window.colorize([randColor(), randColor()]);

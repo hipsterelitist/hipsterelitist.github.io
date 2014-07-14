@@ -11,7 +11,7 @@ $greatblue: black;
 
 $fonts: Menlo, Monaco, 'Bitstream', "Courier New";
 
-$mobile-break: 481px;
+$mobile-break: 480px;
 $tablet-break: 1025px;
 
 @font-face {
@@ -227,7 +227,7 @@ pre{
 
 }
 
-@media only screen and (max-width: $mobile-break){
+@media only screen and (max-device-width: $mobile-break){
 
 	nav{
 		color:black;
@@ -262,7 +262,10 @@ pre{
 	}
 
 	#aolol{
-		font-size:8px;
+		font-size:12px;
+	}
+	#aolol.txt{
+		font-size:30px;
 	}
 
 	.lightbox{
