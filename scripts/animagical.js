@@ -396,7 +396,7 @@ $(document).ready(function(){
 		$(".lightbox").hide();
 	});
 
-	experience(300);
+	experience(150);
 
 	function adjustContent(){
 		content_height = ($(window).height() - $("nav").height());
