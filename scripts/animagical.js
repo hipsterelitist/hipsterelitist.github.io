@@ -189,13 +189,16 @@ $(document).ready(function(){
 	}
 
 
-	function colorize(cols){
+	function colorize(cols, selectah){
+		if (typeof selectah === "undefined" || selectah === null) { 
+			selectah = $("span")
+		}
 		if (typeof cols === "undefined" || cols === null) { 
 			cols = [randColor(), randColor()];
 		}
 		window.rainbow.setSpectrumByArray(cols)
-		gap = Math.round((100 / $("span").length))
-		$("span").each(function(i){
+		gap = Math.round((100 / selectah.length))
+		selectah.each(function(i){
 			$(this).css({"color":"#" +rainbow.colourAt((0+(gap*i)))})
 		});
 	}
@@ -225,10 +228,11 @@ $(document).ready(function(){
 			// since we're feeding it groomed text from made up txt, lets
 			// stick to pre whitespace
 			//type = "<span class='typeo'>" + type + "</span>"
-			$("#aolol").html(type);
+			$("#aolol").html(type + "<span id='blink'>█</span>");
 			poz += 1
 			if(poz > txt.length){
 				clearInterval(window.intraval)
+				$("#blink").remove();
 				anime()
 			}
 		}, wait)
@@ -246,8 +250,51 @@ $(document).ready(function(){
 	window.blurize = blurize
 	window.typin = typin
 
+	function rainbowz(selectah){
+		if (typeof selectah === "undefined" || selectah === null) { 
+			selectah = $("span")
+		}
+		kids = $(selectah).children("span")
+		lkids = kids.length
+		stops  = (100/lkids)
+		spec = new Rainbow();
+		//arr = [rgb2hex($(kids[0]).css("color")), rgb2hex($(kids[lkids-1]).css("color"))]
+		//console.warn(arr)
+		intervalz = []
+		spec.setSpectrumByArray([rgb2hex($(kids[0]).css("color")), rgb2hex($(kids[lkids-1]).css("color"))])
+		kids.each(function(i, v){
+			$(v).attr("data-cdex");
+			$(v).attr("data-cdex", i)
+			vz = setInterval(function(){
+				//console.warn($(v).data("cdex"))
+				cdex = parseInt($(v).attr("data-cdex"))
+				colorDat = spec.colourAt(cdex)
+				$(v).css({"color":"#" + colorDat});
+				if((cdex%2) == 0){
+					//$(v).css({"opacity":"0"});
+				}else{
+					//$(v).css({"opacity":"1"});
+				}
+				console.warn(colorDat);
+				if(cdex >= lkids){
+					cdex = 0
+				}else{
+					cdex++;
+				}
+				$(v).attr("data-cdex", cdex);
+			},500);
+			intervalz.push(vz)
+		})
+		/*iv = setInterval(function(){
+			kids.each(function(i, v){
+				$(kids[i]).css({"color":spec.colourAt(i*lkids)})
+				//console.warn($("v"));
+			})
+		});*/
+		return intervalz;
+	}
+
 	function lightboxin(content){
-		//$(".lightbox").unbind("")
 		$("#flash").animate({
 			opacity:0
 			},{duration: 400,
@@ -383,11 +430,20 @@ $(document).ready(function(){
 		}
 	})
 
-	$("#aolol").on("mouseover", ".range", function(){
+	$("#aolol").on("mouseover", ".range", function(e){
 		if($("#aolol").hasClass("navigable") && ($(".range").index($(this)) > 0)){
+			spec = new Rainbow()
+			kids = $(this).children("span")
+			colarray = [rgb2hex($(kids[0]).css("color")), rgb2hex($(kids[kids.length-1]).css("color"))]
+			spec.setSpectrumByArray(colarray)
 			window.invertColObj($(this));
+			//tarval = rainbowz($(this));
 			$(this).one("mouseout", function(){
 				window.invertColObj($(this));
+				//window.colorize(colarray, $(this))
+				/*$(tarval).each(function(i){
+					clearInterval(tarval[i])
+				});*/
 			})
 		}
 	});
