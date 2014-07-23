@@ -83,6 +83,10 @@ span.typeo{
 #aolol.txt{
 	white-space:normal;
 }
+#aolol.why{
+	font-size:12px;
+	overflow:auto;
+}
 body.dim .typeo h3{
 	border-bottom:5px solid $awfulgreen;
 }
@@ -280,7 +284,9 @@ pre{
 }
 
 @media only screen and (max-width: $tablet-break){
-
+	#aolol.why{
+		font-size:8px;
+	}
 }
 
 @media only screen and (max-device-width: $mobile-break){

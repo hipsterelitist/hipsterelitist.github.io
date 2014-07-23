@@ -56,6 +56,10 @@ span.typeo {
 #aolol.txt {
   white-space: normal; }
 
+#aolol.why {
+  font-size: 12px;
+  overflow: auto; }
+
 body.dim .typeo h3 {
   border-bottom: 5px solid lime; }
 
@@ -240,6 +244,9 @@ pre {
   -ms-animation: cursor-blink  2s linear 0s infinite;
   -o-animation: cursor-blink  2s linear 0s infinite;*/ }
 
+@media only screen and (max-width: 1025px) {
+  #aolol.why {
+    font-size: 8px; } }
 @media only screen and (max-device-width: 480px) {
   nav {
     color: black;

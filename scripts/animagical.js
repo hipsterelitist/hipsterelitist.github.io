@@ -321,7 +321,7 @@ $(document).ready(function(){
 				wait = 50; 
 		}	
 		window.wash()
-		$("#aolol").removeClass("txt").addClass("navigable");
+		$("#aolol").removeClass("txt").removeClass("why").addClass("navigable");
 		str = "Companies:\nPlayAPI\nQuirky\nFashism\nOMGPOP"
 
 		// using my original genText method instead since it generates
@@ -354,18 +354,18 @@ $(document).ready(function(){
 	}
 
 	function loadExperience(ranger){
-		$("#aolol").removeClass("txt").addClass("navigable");
+		$("#aolol").removeClass("txt").removeClass("why").addClass("navigable");
 		dex = ($(".range").index(ranger) - 1)
 		lightboxin($($("#experience div")[dex]).html());
 	}
 	function loadBio(){
 		window.wash()
-		$("#aolol").removeClass("navigable").addClass("txt");
+		$("#aolol").removeClass("navigable").removeClass("why").addClass("txt");
 		return $("#bio").html()
 	}
 
 	function loadWhy(){
-		$("#aolol").removeClass("navigable").removeClass("txt");
+		$("#aolol").removeClass("navigable").removeClass("txt").addClass("why");
 		if(typeof(window.intraval) == "number"){
 			clearInterval(window.intraval)
 		}
