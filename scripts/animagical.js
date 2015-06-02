@@ -322,7 +322,7 @@ $(document).ready(function(){
 		}	
 		window.wash()
 		$("#aolol").removeClass("txt").removeClass("why").addClass("navigable");
-		str = "Companies:\nPlayAPI\nQuirky\nFashism\nOMGPOP"
+		str = "Companies:\nStowaway\nPlayAPI\nQuirky\nFashism\nOMGPOP"
 
 		// using my original genText method instead since it generates
 		// range areas that can be targeted for events
@@ -421,7 +421,7 @@ $(document).ready(function(){
 		})
 	})
 
-	$(".dim").on("click", function(){
+	$("li.dim").on("click", function(){
 		$("body").toggleClass("dim");
 		if($("body").hasClass("dim")){
 			$("nav .dim:first").html("[DAY]")
@@ -452,7 +452,7 @@ $(document).ready(function(){
 		$(".lightbox").hide();
 	});
 
-	experience(150);
+	experience(50);
 
 	function adjustContent(){
 		content_height = ($(window).height() - $("nav").height());
