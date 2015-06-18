@@ -30,6 +30,16 @@ $(document).ready(function(){
 	
 	window.rainbow = new Rainbow();
 
+	$.ajax({
+		type: "GET",
+		url: "/json/data.json",
+		dataType: "json",
+		success: function(data){
+			window.infos = data;
+			experience(50);
+		}
+	});
+
 	// this is the original method I wrote which relies on CSS transitions
 	// not very authentic, but easier to manage
 	// common code in this functions should be abstracted for library
@@ -48,7 +58,7 @@ $(document).ready(function(){
 			formatted = ''
 			arr = data.split("\n")
 			jQuery.each(arr, function(dex, val){
-				// this is such a hatch job, but the alternative
+				// this is such a hatchet job, but the alternative
 				// is to calculate areas after rendering
 				// quite possibly every time an event is triggered
 
@@ -96,9 +106,14 @@ $(document).ready(function(){
 					console.log("no callback passed to wash");
 				}
 			}
-		$("span").animate({
-			opacity:"0"
-		}, {duration: 250, complete: callback});
+		if ($("span").length > 0){
+			$("span").animate({
+				opacity:"0"
+			}, {duration: 250, complete: callback});
+		}else{
+			callback();
+		}
+
 	}
 
 	function spit(selectah, wait){
@@ -233,7 +248,7 @@ $(document).ready(function(){
 			if(poz > txt.length){
 				clearInterval(window.intraval)
 				$("#blink").remove();
-				anime()
+				anime();
 			}
 		}, wait)
 	}
@@ -299,7 +314,7 @@ $(document).ready(function(){
 			opacity:0
 			},{duration: 400,
 			 complete:function(){
-				$(".lightbox").show(0, function(){
+				$(".lightbox").show(50, function(){
 					$("#flash").html(content)
 					$("#flash").animate({
 						opacity:1
@@ -315,6 +330,20 @@ $(document).ready(function(){
 		})
 	}
 
+	function clearIntravals(){
+		if(typeof(window.intraval) == "number"){
+			clearInterval(window.intraval)
+		}
+	}
+
+	function loadList(nme){
+		str = ""
+		if(typeof nme != "undefined" && typeof nme != "null" && typeof window.infos[nme] != "undefined"){
+			str = nme + ":\n" + Object.keys(window.infos[nme]).join("\n");
+		}
+		return str
+	}
+
 
 	function experience(wait){
 		if (typeof wait === "undefined" || wait === null) { 
@@ -322,8 +351,8 @@ $(document).ready(function(){
 		}	
 		window.wash()
 		$("#aolol").removeClass("txt").removeClass("why").addClass("navigable");
-		str = "Companies:\nStowaway\nPlayAPI\nQuirky\nFashism\nOMGPOP"
-
+		str = loadList("companies")
+		//str = str.concat(Object.keys(window.infos["companies"]).join("\n"))
 		// using my original genText method instead since it generates
 		// range areas that can be targeted for events
 		// Uncomment this method once authText is brought to parity  
@@ -341,54 +370,42 @@ $(document).ready(function(){
 			window.colorize();
 			$(".range").on("click", function(e){
 				if($(".range").index($(this)) > 0){
-
-					loadExperience($(this));
-					//console.warn($(".range").index($(this)));
+					dex = ($(".range").index($(this)) - 1);
+					keys = Object.keys(window.infos["companies"]);
+					lightboxin(window.infos["companies"][keys[dex]]);
 				}
 			});
 		});
 	}
 
-	function biography(){
-		str = "Ruby on Rails developer, Digital Director, and generally dedicated guy possessing a strong design and social media background. Over eight years start-up experience covering all aspects of production from initial concept and architecting to scaling for over a hundred thousand users."
+	function projects(){
+		$("#aolol").html(" ");
+		$("#aolol").removeClass("txt").removeClass("why").addClass("navigable");
+		str = loadList("projects");
+		genText(str, function(){
+			spit($("span"), 50);
+			window.colorize();
+			$(".range").on("click", function(e){
+				if($(".range").index($(this)) > 0){
+					dex = ($(".range").index($(this)) - 1);
+					keys = Object.keys(window.infos["projects"])
+					lightboxin(window.infos["projects"][keys[dex]])
+				}
+			});
+		})
 	}
 
-	function loadExperience(ranger){
-		$("#aolol").removeClass("txt").removeClass("why").addClass("navigable");
-		dex = ($(".range").index(ranger) - 1)
-		lightboxin($($("#experience div")[dex]).html());
-	}
-	function loadBio(){
+	function biography(){
 		window.wash()
 		$("#aolol").removeClass("navigable").removeClass("why").addClass("txt");
-		return $("#bio").html()
+		str = window.infos["name"] + "<br/>"
+		str += buildList(window.infos["education"], "Education")
+		str += buildList(window.infos["skills"], "Skills")
+		//return $("#bio").html()
+		return str
 	}
 
-	function loadWhy(){
-		$("#aolol").removeClass("navigable").removeClass("txt").addClass("why");
-		if(typeof(window.intraval) == "number"){
-			clearInterval(window.intraval)
-		}
-		return $("#why").html()
-	}
-
-	$(".experience").on("click", function(){
-		if(typeof(window.intraval) == "number"){
-			clearInterval(window.intraval)
-		}
-		experience();	
-	});
-
-	$("nav").on("click", function(){
-		$(".lightbox").hide();
-	});
-
-	$(".bio").on("click", function(){
-		$("#aolol").removeClass("navigable").addClass("txt");
-		window.wash(typin(loadBio(), 5, 1));
-	});
-
-	$(".why").on("click", function(){
+	function why(){
 		// Uncomment below to use type out function, left here
 		// as example of how grooming can be done for it.
 		/* 
@@ -405,8 +422,11 @@ $(document).ready(function(){
 				},10);
 			});
 		})*/
-		groomed = $.trim(loadWhy()).replace(/(<br>)|(<br \/>)|(<p>)|(<\/p>)/g, "\n")
-		genText(groomed, function(){
+		//groomed = $.trim(loadWhy()).replace(/(<br>)|(<br \/>)|(<p>)|(<\/p>)/g, "\n")
+
+		$("#aolol").removeClass("navigable").removeClass("txt").addClass("why");
+
+		genText(window.infos["why"], function(){
 			window.sow(5, 450, function(){
 				window.colorize([randColor(), randColor()]);
 				$("span").css({
@@ -419,7 +439,45 @@ $(document).ready(function(){
 			});
 			window.colorize([randColor(), randColor()]);
 		})
-	})
+	}
+
+	function buildList(obo, title){
+		bund = Object.keys(obo)
+		str = "<br/><br/>" + title + "<br/>------------"
+		for (var c = 0; c < bund.length; c++){
+			str += "<br/><br/><em><strong>" + bund[c] + "</strong></em><br/>"
+			if(typeof(obo[bund[c]]) === 'string'){
+				str += obo[bund[c]]
+			}else{
+				str += obo[bund[c]].join("<br/>")
+			}
+		}
+		return str
+	}
+
+	$(".experience").on("click", function(){
+		clearIntravals();
+		experience();	
+	});
+
+	$(".projects").on("click", function(){
+		clearIntravals();
+		window.wash(projects);
+	});
+
+	$("nav").on("click", function(){
+		$(".lightbox").hide();
+	});
+
+	$(".bio").on("click", function(){
+		$("#aolol").removeClass("navigable").addClass("txt");
+		window.wash(typin(biography(), 5, 1));
+	});
+
+	$(".why").on("click", function(){
+		clearIntravals();
+		why();
+	});
 
 	$("li.dim").on("click", function(){
 		$("body").toggleClass("dim");
@@ -437,13 +495,8 @@ $(document).ready(function(){
 			colarray = [rgb2hex($(kids[0]).css("color")), rgb2hex($(kids[kids.length-1]).css("color"))]
 			spec.setSpectrumByArray(colarray)
 			window.invertColObj($(this));
-			//tarval = rainbowz($(this));
 			$(this).one("mouseout", function(){
 				window.invertColObj($(this));
-				//window.colorize(colarray, $(this))
-				/*$(tarval).each(function(i){
-					clearInterval(tarval[i])
-				});*/
 			})
 		}
 	});
@@ -452,7 +505,7 @@ $(document).ready(function(){
 		$(".lightbox").hide();
 	});
 
-	experience(50);
+	//experience(50);
 
 	function adjustContent(){
 		content_height = ($(window).height() - $("nav").height());

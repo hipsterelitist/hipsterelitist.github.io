@@ -4,14 +4,12 @@
   src: url("fonts/vera-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/vera-webfont.woff") format("woff"), url("fonts/vera-webfont.ttf") format("truetype"), url("fonts/vera-webfont.svg#bitstream_vera_sansroman") format("svg");
   font-weight: normal;
   font-style: normal; }
-
 @font-face {
   font-family: 'Bitstream';
   src: url("fonts/verabd-webfont.eot");
   src: url("fonts/verabd-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/verabd-webfont.woff") format("woff"), url("fonts/verabd-webfont.ttf") format("truetype"), url("fonts/verabd-webfont.svg#bitstream_vera_sansbold") format("svg");
   font-weight: bold;
   font-style: normal; }
-
 body {
   margin: 0px;
   padding: 0px;
@@ -34,11 +32,11 @@ a:hover {
   background: #0033a0; }
 
 body.dim a {
-  color: lime; }
+  color: #00FF00; }
 
 body.dim a:hover {
   color: black;
-  background: lime; }
+  background: #00FF00; }
 
 span {
   margin-left: -2000px; }
@@ -61,12 +59,12 @@ span.typeo {
   overflow: auto; }
 
 body.dim .typeo h3 {
-  border-bottom: 5px solid lime; }
+  border-bottom: 5px solid #00FF00; }
 
 body.dim span.typeo, body.dim #aolol.txt {
   font-family: Menlo, Monaco, "Bitstream", "Courier New";
-  color: lime;
-  text-shadow: 0 0 2px lime; }
+  color: #00FF00;
+  text-shadow: 0 0 2px #00FF00; }
 
 nav {
   border-bottom: 1px;
@@ -79,9 +77,9 @@ nav {
   text-transform: uppercase; }
 
 body.dim nav {
-  color: lime;
-  text-shadow: 0 0 2px lime;
-  border-bottom: 18px solid lime; }
+  color: #00FF00;
+  text-shadow: 0 0 2px #00FF00;
+  border-bottom: 18px solid #00FF00; }
 
 nav .logotype {
   margin-left: 18px;
@@ -105,7 +103,7 @@ nav ul li:hover {
 
 body.dim nav ul li:hover {
   color: black;
-  background: lime; }
+  background: #00FF00; }
 
 .lightbox {
   position: fixed;
@@ -126,12 +124,12 @@ body.dim nav ul li:hover {
 
 body.dim .lightbox {
   background: black;
-  border-color: lime;
-  color: lime;
+  border-color: #00FF00;
+  color: #00FF00;
   text-shadow: 0 0 2px rgba(0, 255, 0, 0.5); }
 
 .lightbox #flash {
-  white-space: pre-line;
+  white-space: normal;
   margin-bottom: 90px; }
 
 .lightbox .escape {
@@ -147,11 +145,13 @@ body.dim .lightbox {
   color: white; }
 
 body.dim .lightbox .escape:hover {
-  background: lime;
+  background: #00FF00;
   color: black; }
 
 .range {
   display: table; }
+  .range .range {
+    font-size: 12px; }
 
 .navigable .range {
   cursor: pointer; }
@@ -180,31 +180,23 @@ pre {
 @-webkit-keyframes blinkz {
   0% {
     opacity: 0; }
-
   100% {
     opacity: 1; } }
-
 @-moz-keyframes blinkz {
   0% {
     opacity: 0; }
-
   100% {
     opacity: 1; } }
-
 @-o-keyframes blinkz {
   0% {
     opacity: 0; }
-
   100% {
     opacity: 1; } }
-
 @keyframes blinkz {
   0% {
     opacity: 0; }
-
   100% {
     opacity: 1; } }
-
 /*@-webkit-keyframes cursor-blink {
   0%   { background: #0a0 }
   47%  { background: #090 }
@@ -274,7 +266,7 @@ pre {
     height: 100%; }
 
   body.dim nav {
-    border-bottom: 8px solid lime; }
+    border-bottom: 8px solid #00FF00; }
 
   #aolol {
     font-size: 12px; }
@@ -313,3 +305,5 @@ pre {
     -moz-animation: none;
     -o-animation: none;
     animation: none; } }
+
+/*# sourceMappingURL=style.css.map */

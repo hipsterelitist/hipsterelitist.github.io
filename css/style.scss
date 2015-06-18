@@ -168,7 +168,7 @@ body.dim .lightbox{
 }
 
 .lightbox #flash{
-	white-space:pre-line;
+	white-space:normal;
 	margin-bottom:90px;
 }
 
@@ -194,6 +194,9 @@ body.dim .lightbox .escape:hover{
 
 .range{
 	display:table;
+	.range{
+		font-size:12px;
+	}
 }
 
 .navigable .range{

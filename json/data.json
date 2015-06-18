@@ -1,0 +1,28 @@
+{
+	"name" : "Chris France",
+	"companies" : {
+		"stowaway" : "<h2>Digital Director (2013-2014)</h2><p>Oversaw the branding, design, and launch of this vertically integrated cosmetics company.  This included being hands on with creating brand and UI/UX standards (and physical packaging!), building a fully custom logistics pipeline, and extending open source e-commerce solutions to better handle inventory, CRM, and rich assets.</p><p><a href=\"http://stowawaycosmetics.com\" target=\"_blank\">Stowaway Cosmetics</a></p>",
+		"playapi" : "<h2>Chief Engineer (2011-2014)</h2><p>We were kind of big nerds, so we figured Chief Engineer sounded more like the Miles O'Brien \"build it all/fix it all\" nature of the job than CTO.<br/><br/><a href=\"http://playapi.com\" target=\"_blank\">PLAYAPI</a> was built on Rails & Mongodb with a fair bit of REDIS. Had tons of data and built some really great analytical tools... Oh and super fun games for *GREAT BRANDS*?</p>",
+		"quirky" : "<h2>Senior Developer (2009-2012)</h2><p>First engineering hire and overall 5th employee or so.<br/><br/>Oversaw a complete amazing overhaul of the site. Implemented countless features and helped the site grow from less than a thousand users to the thriving community it is today.</p><p><a href=\"http://quirky.com\" target=\"_blank\">QUIRKY</a></p>",
+		"fashism" : "<h2>Co-Founder (2008-2010)</h2><p>SCORE! MY FIRST REAL COMPANY! I'M A FOUNDERSZ!<br/><br/>Built a platform for submitting and rating outfits. Ideally to help make decisions before purchasing or leaving the house... but really more about teenage validation.<br/><br/>Sadly, Fashism shuttered earlier this year, but Mashable has a roundup: <a href=\"http://mashable.com/category/fashism/\" target=\"_blank\">FASHISM</a></p>",
+		"omgpop" : "<h2>Developer (2006-2008)</h2><p>Cut my teeth here under Charles Forman and Dan Albritton...<br/><br/>Pivoted from flavor of the month dating site to social-gaming-DrawSomething-spawning-Zynga chow.<br/><br/>(Seriously though, how good was that dating app? I should rebuild it as an app because it would totally kill Tinder.)</p>"
+	},
+	"projects" : {
+		"nike ntc" : "<h2>Nike NTC Tour App</h2><p>Developed a cross platform mobile app for Nike's Training Club 2014 LA event.  This app enabled participants to checkin for events and purchase items using RFID, sign-up and manage sessions, and chat/share photos with other members at the event.</p><p>The front-end was pure javascript (Angular), served in either a native wrapper or via the web.</p>",
+		"city guides" : "<h2>Lexus City Guides for Cool Hunting</h2><p>Developed front-end features for Coolhunting's Lexus City Guides initiative.  This included responsive city specific content, ad units, and a lot of HTML5 magic</p><p><a href=\"http://www.coolhunting.com/tag/Lexus%20City%20Guides\" target=\"_blank\">Lexus City Guides</a></p>",
+		"kate spade" : "<h2>Kate Spade - Live Colorfully Game</h2><p>This game was deployed on our PlayAPI platform.  The front end was completely javascript and HTML5 with calls made to our backend (with real time syncing using redis pubsub).  It handled over 100k concurrents users without breaking a sweet.</p>",
+		"fashism" : "<h2>Fashism</h2><p>My first first full stack web project.  This ended up being a pretty nifty iPhone app that let users submit photos outfits and looks to receive feedback in real time about whether they should buy or wear it.</p>",
+		"nailed it" : "<h2>Nailed It</h2><p>This was our first attempt at making an iPhone app as a proof of concept for our PlayAPI platform.  Thrown together in a few days, it syndicated photos of nail art from Instagram and allowed users to vote and find related concepts and inspiration.</p>"
+	},
+	"why" : "to make cool useful\nstuff that no one\nhas made before",
+	"education" : {
+		"The New School" : "Media Studies, BA 2009",
+		"Parsons" : "Design and Technology (2006-2009)"
+	},
+	"skills" : {
+		"Tech" : ["Ruby", "NodeJS", "Redis", "Javascript", "HTML5", "ASM", "MongoDB", "Postgres", "Swift", "Docker"],
+		"Design" : ["Trendy UI/UX", "Repsonsive Patterns", "A/B Testing", "Information Architecture", "Usability Testing"]
+	}
+}
+
+
